@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { AxiosWithAuth } from "../utils/AxiosWithAuth";
 import Axios from "axios";
 
-const Login = () => {
+const Login = props => {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
 
@@ -11,7 +11,7 @@ const Login = () => {
   };
 
   const passHandler = e => {
-    setUser(e.target.value);
+    setPass(e.target.value);
   };
 
   const login = e => {
@@ -21,7 +21,7 @@ const Login = () => {
 
     const credentials = {
       username: user,
-      username: pass
+      password: pass
     };
 
     AxiosWithAuth()
@@ -32,13 +32,12 @@ const Login = () => {
         props.history.push("/bubbles");
       })
       .catch(err => {
-        console.log("from Login.js", err);
+        console.log("From Login.js", err);
       });
   };
   return (
     <div className="container-fluid">
       <div className="row no-gutter">
-        <div className="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
         <div className="col-md-8 col-lg-6">
           <div className="login d-flex align-items-center py-5">
             <div className="container">
@@ -79,12 +78,6 @@ const Login = () => {
                         className="custom-control-input"
                         id="customCheck1"
                       />
-                      <label
-                        className="custom-control-label"
-                        htmlFor="customCheck1"
-                      >
-                        Remember password
-                      </label>
                     </div>
                     <button
                       className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
